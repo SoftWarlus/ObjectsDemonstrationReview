@@ -26,7 +26,7 @@ public class Main {
         // Print properties of the balloons
         for (Balloon each : things) {
             if (each != null) {
-                System.out.printf("color: %s%nsize: %d%n%n", each.getColor(), each.getSize());
+                System.out.println(each);
             }
         }
         System.out.printf("number produced: %d%n", Balloon.getQuantity());
@@ -42,12 +42,14 @@ class Balloon {
     // "Encapsulation" of code
     private int size;
     private String color;
+    private boolean inflated;
     private static int quantity = 0;
 
     // Custom Constructor
     Balloon(int arg1, String arg2) {
         size = arg1;
         color = arg2;
+        inflated = false;
         quantity++;
     }
 
@@ -55,6 +57,7 @@ class Balloon {
     Balloon() {
         size = 10;
         color = "blue";
+        inflated = false;
         quantity++;
     }
 
@@ -77,5 +80,24 @@ class Balloon {
     static void destruct(int i, Balloon[] arg) {
         arg[i] = null;
         quantity--;
+    }
+
+    public boolean isInflated() {
+
+        return inflated;
+    }
+
+    public void setInflated(boolean i) {
+        inflated = i;
+    }
+
+    @Override
+    public String toString() {
+        return "Balloon{" +
+                "size = " + size +
+                ", color = " + color + ", " +
+
+                (inflated ? "inflated" : "not inflated") +
+                '}';
     }
 }
